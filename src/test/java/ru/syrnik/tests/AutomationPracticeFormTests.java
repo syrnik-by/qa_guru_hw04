@@ -3,7 +3,9 @@ package ru.syrnik.tests;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AutomationPracticeFormTests extends TestBase {
 
@@ -18,8 +20,12 @@ public class AutomationPracticeFormTests extends TestBase {
         String day = "17";
         String month = "August";
         String year = "1991";
-        String subject = "English";
-        String hobbie = "Sports";
+        List<String> subjects = new ArrayList<>();
+        subjects.add("English");
+        subjects.add("Maths");
+        List<String> hobbies = new ArrayList<>();
+        hobbies.add("Sports");
+        hobbies.add("Music");
         File uploadPicture = new File("src/test/resources/1.txt");
         String currentAddress = "addressCurrent";
         String state = "Haryana";
@@ -32,8 +38,8 @@ public class AutomationPracticeFormTests extends TestBase {
                 .setGender(gender)
                 .setUserNumber(userNumber)
                 .setBirthDate(day, month, year)
-                .setSubjectsInput(subject)
-                .setHobbiesWrapper(hobbie)
+                .setSubjectsInput(subjects)
+                .setHobbiesWrapper(hobbies)
                 .setUploadPicture(uploadPicture)
                 .setCurrentAddress(currentAddress)
                 .setState(state)
@@ -45,8 +51,8 @@ public class AutomationPracticeFormTests extends TestBase {
                     put("Gender", gender);
                     put("Mobile", userNumber);
                     put("Date of Birth", day + " " + month + "," + year);
-                    put("Subjects", subject);
-                    put("Hobbies", hobbie);
+                    put("Subjects", subjects.toString().replace("[","").replace("]",""));
+                    put("Hobbies", hobbies.toString().replace("[","").replace("]",""));
                     put("Picture", uploadPicture.getName());
                     put("Address", currentAddress);
                     put("State and City", state + " " + city);

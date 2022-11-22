@@ -5,6 +5,7 @@ import ru.syrnik.pages.components.CalendarComponent;
 import ru.syrnik.pages.components.RegistrationResultModal;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
@@ -58,13 +59,19 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjectsInput(String value) {
-        $("#subjectsInput").setValue(value).pressEnter();
+    public RegistrationPage setSubjectsInput(List<String> values) {
+        for (String value :
+                values) {
+            $("#subjectsInput").setValue(value).pressEnter();
+        }
         return this;
     }
 
-    public RegistrationPage setHobbiesWrapper(String value) {
-        $("#hobbiesWrapper").$(byText(value)).click();
+    public RegistrationPage setHobbiesWrapper(List<String> values) {
+        for (String value :
+                values) {
+            $("#hobbiesWrapper").$(byText(value)).click();
+        }
         return this;
     }
 
