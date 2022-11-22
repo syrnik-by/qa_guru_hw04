@@ -45,6 +45,11 @@ public class AutomationPracticeFormTests extends TestBase {
                     put("Gender", gender);
                     put("Mobile", userNumber);
                     put("Date of Birth", day + " " + month + "," + year);
+                    put("Subjects", subject);
+                    put("Hobbies", hobbie);
+                    put("Picture", uploadPicture.getName());
+                    put("Address", currentAddress);
+                    put("State and City", state + " " + city);
                 }});
     }
 }
