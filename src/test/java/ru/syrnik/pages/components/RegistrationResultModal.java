@@ -10,8 +10,4 @@ public class RegistrationResultModal {
         $(".table-responsive").$(byText(key)).parent()
                 .shouldHave(text(value));
     }
-
-    public void closeModal() {
-        $("#closeLargeModal").click();
-    }
 }
