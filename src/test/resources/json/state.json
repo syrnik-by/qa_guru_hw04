@@ -1,0 +1,32 @@
+[
+  {
+    "name": "NCR",
+    "city": [
+      "Delhi",
+      "Gurgaon",
+      "Noida"
+    ]
+  },
+  {
+    "name": "Uttar Pradesh",
+    "city": [
+      "Agra",
+      "Lucknow",
+      "Merrut"
+    ]
+  },
+  {
+    "name": "Haryana",
+    "city": [
+      "Karnal",
+      "Panipat"
+    ]
+  },
+  {
+    "name": "Rajasthan",
+    "city": [
+      "Jaipur",
+      "Jaiselmer"
+    ]
+  }
+]

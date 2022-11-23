@@ -16,8 +16,13 @@ tasks.withType(JavaCompile) {
 dependencies {
     testImplementation (
             "com.codeborne:selenide:6.9.0",
+            "com.github.javafaker:javafaker:1.0.2",
+            "com.fasterxml.jackson.core:jackson-databind:2.14.1",
             "org.junit.jupiter:junit-jupiter:5.8.1"
     )
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 test {
