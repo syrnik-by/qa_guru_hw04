@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static io.qameta.allure.Allure.step;
 import static ru.syrnik.utils.RandomUtils.getRandomCityByState;
 import static ru.syrnik.utils.RandomUtils.getRandomState;
 
@@ -46,31 +47,38 @@ public class AutomationPracticeFormTests extends TestBase {
         String state = randomState.getName();
         String city = getRandomCityByState(randomState);
 
-        registrationPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setGender(gender)
-                .setUserNumber(userNumber)
-                .setBirthDate(day, month, year)
-                .setSubjectsInput(subjects)
-                .setHobbiesWrapper(hobbies)
-                .setUploadPicture(uploadPicture)
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
-                .clickSubmit()
-                .verifyResult(new HashMap<>() {{
-                    put("Student Name", firstName + " " + lastName);
-                    put("Student Email", userEmail);
-                    put("Gender", gender);
-                    put("Mobile", userNumber);
-                    put("Date of Birth", day + " " + month + "," + year);
-                    put("Subjects", subjects.toString().replace("[", "").replace("]", ""));
-                    put("Hobbies", hobbies.toString().replace("[", "").replace("]", ""));
-                    put("Picture", uploadPicture.getName());
-                    put("Address", currentAddress);
-                    put("State and City", state + " " + city);
-                }});
+        step("Open registrations form", () -> {
+            registrationPage.openPage();
+        });
+
+        step("Fill registrations form", () -> {
+            registrationPage.setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setUserEmail(userEmail)
+                    .setGender(gender)
+                    .setUserNumber(userNumber)
+                    .setBirthDate(day, month, year)
+                    .setSubjectsInput(subjects)
+                    .setHobbiesWrapper(hobbies)
+                    .setUploadPicture(uploadPicture)
+                    .setCurrentAddress(currentAddress)
+                    .setState(state)
+                    .setCity(city)
+                    .clickSubmit();
+        });
+        step("Check results form", () -> {
+            registrationPage.verifyResult(new HashMap<>() {{
+                put("Student Name", firstName + " " + lastName);
+                put("Student Email", userEmail);
+                put("Gender", gender);
+                put("Mobile", userNumber);
+                put("Date of Birth", day + " " + month + "," + year);
+                put("Subjects", subjects.toString().replace("[", "").replace("]", ""));
+                put("Hobbies", hobbies.toString().replace("[", "").replace("]", ""));
+                put("Picture", uploadPicture.getName());
+                put("Address", currentAddress);
+                put("State and City", state + " " + city);
+            }});
+        });
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id "io.qameta.allure" version "2.11.2"
 }
 
 group 'ru.syrnik'
@@ -13,18 +14,40 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter {
+        aspectjVersion.set("1.9.5")
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.19.0")
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation (
             "com.codeborne:selenide:6.9.0",
             "com.github.javafaker:javafaker:1.0.2",
             "com.fasterxml.jackson.core:jackson-databind:2.14.1",
-            "org.junit.jupiter:junit-jupiter:5.8.1"
+            "org.junit.jupiter:junit-jupiter:5.8.1",
+            "io.qameta.allure:allure-selenide:2.19.0"
     )
 
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }

@@ -21,7 +21,6 @@ public class RegistrationPage {
     private final CalendarComponent calendarComponent = new CalendarComponent();
     private final RegistrationResultModal registrationResultModal = new RegistrationResultModal();
 
-
     public RegistrationPage openPage() {
         open(URL);
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
