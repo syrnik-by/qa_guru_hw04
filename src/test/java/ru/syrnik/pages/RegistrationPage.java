@@ -10,8 +10,7 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
@@ -24,6 +23,8 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open(URL);
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
